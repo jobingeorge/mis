@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Models;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+
+
+class MonthlyProgramsModel extends Model
+{
+
+    protected $table = 'monthly_program'; 
+    protected $fillable = ['added_by','pen','added_by_region','added_by_district','added_by_office',
+                           'date','district','camp','office','nature_of_duty',
+                          'remarks'];
+
+
+  public function getAllDistricts(){
+            $data = DB::table('district')
+           ->get();
+
+        return $data = json_decode(json_encode($data), true);  
+    } 
+  public function getAllMonthlyProgram(){
+     $result = DB::table('monthly_program')
+                    ->leftJoin('district', function ($join) {
+                    $join->on('monthly_program.district', '=', 'district.district_id');
+                    })
+                    ->leftJoin('office', function ($join) {
+                    $join->on('monthly_program.office', '=', 'office.office_id');
+                    })
+                    ->orderBy('id', 'DESC')
+                    ->select('monthly_program.*','district.district_name','office.office_name')
+                    ->get();
+        return $resultArray = json_decode(json_encode($result), true);
+  }
+  public function getById($id){
+        $data = DB::table('monthly_program')
+                    ->leftJoin('district', function ($join) {
+                    $join->on('monthly_program.district', '=', 'district.district_id');
+                    })
+                    ->leftJoin('office', function ($join) {
+                    $join->on('monthly_program.office', '=', 'office.office_id');
+                    })
+                    ->select('monthly_program.*','district.district_name','office.office_name')
+            ->where('monthly_program.id', '=', $id)
+           ->get();
+
+        return $data = json_decode(json_encode($data), true);  
+    }
+
+   
+
+
+}
