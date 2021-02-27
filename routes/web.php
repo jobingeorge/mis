@@ -73,7 +73,7 @@ Route::get('/reports-state', 'StateReportController@stateReport');
 Route::get('/reports-region', 'RegionReportController@regionReport');
 Route::get('/reports-district', 'DistrictReportController@districtReport');
 Route::get('/reports-suboffice', 'SubOfficeReportController@subofficeReport');
-Route::get('/excel', 'ReportController@excel')->name('excel');
+
 
 
 

@@ -16,7 +16,7 @@ class FuelManagementController extends Controller
     public function __construct(FuelManagementModel $FuelManagementModel)
     {
         $this->FuelManagementModel=$FuelManagementModel;
-        $this->middleware('auth');
+        $this->middleware(['auth','admin','state','region']);
     }
     /**
      * Display a listing of the resource.

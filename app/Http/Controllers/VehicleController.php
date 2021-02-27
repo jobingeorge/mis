@@ -10,7 +10,7 @@ class VehicleController extends Controller
     private $VehicleModel;
     public function __construct(VehicleModel $VehicleModel){
         $this->VehicleModel = $VehicleModel;
-        $this->middleware('auth');
+        $this->middleware(['auth','state','region']);
     }
     /**
      * Display a listing of the resource.

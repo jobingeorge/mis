@@ -12,7 +12,7 @@ class UserController extends Controller
                                 ){
         $this->UserModel = $UserModel;
 
-        $this->middleware(['auth','district']);
+        $this->middleware(['auth','state','region','suboffice']);
 
     }
     /**

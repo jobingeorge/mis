@@ -11,7 +11,7 @@ class CustodyController extends Controller
     private $CustodyModel;
     public function __construct(CustodyModel $CustodyModel){
         $this->CustodyModel = $CustodyModel;
-        $this->middleware('auth');
+        $this->middleware(['auth','state','region','suboffice']);
     }
 
     /**

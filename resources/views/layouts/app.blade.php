@@ -205,31 +205,39 @@
                                 <a href="/home" class="<?php if($uri_segment=='' || $uri_segment=='home'){ echo "active"; } else { echo " ";} ?>">
                                 <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
-                            @if( Auth::user()->officerLevel !='1' )
-
-                             @if( Auth::user()->officerLevel !='3' )
+                             @if( Auth::user()->officerLevel =='0')
                             <li>
                                 <a href="/users" class="<?php if($uri_segment=='users'){ echo "active"; } ?>">
                                 <i class=" fa fa-plus fa-fw"></i>Users</a>
                             </li>
                             @endif
 
+                            @if( Auth::user()->officerLevel =='0'  ||  Auth::user()->officerLevel =='3' || Auth::user()->officerLevel =='4')
                             <li>
                                 <a href="#"><i class="fa fa-car"></i>
                                 Vehicle Management<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
+                                      @if( Auth::user()->officerLevel =='0' )
                                     <li>
                                         <a href="/vehicle-management" class="<?php if($uri_segment=='vehicle-management'){ echo "active"; } ?>"><i class=" fa fa-plus fa-fw"></i>Basic Data of Vehicle</a>
-                                    </li>
-                                    <li>
+                                         <li>
                                         <a href="/custody-management" class="<?php if($uri_segment=='vehicle-management'){ echo "active"; } ?>"><i class=" fa fa-plus fa-fw"></i>Custody Management</a>
                                     </li>
+                                    </li>
+                                    @endif
+                                    @if(  Auth::user()->officerLevel =='3' )
+                                     <li>
+                                        <a href="/custody-management" class="<?php if($uri_segment=='vehicle-management'){ echo "active"; } ?>"><i class=" fa fa-plus fa-fw"></i>Custody Management</a>
+                                    </li>
+                                    @endif
+                                    @if(  Auth::user()->officerLevel =='3' || Auth::user()->officerLevel =='4')
                                     <li>
                                         <a href="/fuel-management" class="<?php if($uri_segment=='fuel-management'){ echo "active"; } ?>"><i class=" fa fa-plus fa-fw"></i>Fuel Management</a>
                                     </li>
                                     <li>
                                         <a href="/repair-maintainence-management" class="<?php if($uri_segment=='repair-maintainence-management'){ echo "active"; } ?>"><i class=" fa fa-plus fa-fw"></i>Repair and Maintainence Management</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </li>
                             <li>
@@ -323,7 +331,7 @@
                             </li>
 
 
-                             @if( Auth::user()->officerLevel !='1' )
+                              @if( Auth::user()->officerLevel =='0'  ||  Auth::user()->officerLevel =='3' || Auth::user()->officerLevel =='4')
 
                              <li>
                                 <a href="/file-disposal" class="<?php if($uri_segment=='file-disposal'){ echo "active"; } ?>">
@@ -331,17 +339,14 @@
                             </li>
                              <li>
                                 <a href="/custom-report" class="<?php if($uri_segment=='custom-report'){ echo "active"; } ?>">
-                                <i class=" fa fa-file fa-fw"></i>Customer Report</a>  
+                                <i class=" fa fa-file fa-fw"></i>Custom Report</a>  
                             </li>
                             @endif
-                            @if( Auth::user()->officerLevel >='2' )
 
+                            @if( Auth::user()->officerLevel >='3' )
                             <li>
                                 <a href="/monthly-programms" class="<?php if($uri_segment=='monthly-programms'){ echo "active"; } ?>"><i class="fa fa-table fa-fw"></i> Monthly Programs</a>
                             </li>
-                         
-
-                            
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i>Master Data<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
@@ -365,8 +370,7 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
-                            </li>
-                            
+                            </li>                            
                             @endif
 
                         </ul>

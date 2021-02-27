@@ -16,7 +16,7 @@ class RepairMaintainenceManagementController extends Controller
     public function __construct(RepairMaintainenceManagementModel $RepairMaintainenceManagementModel)
     {
         $this->RepairMaintainenceManagementModel=$RepairMaintainenceManagementModel;
-        $this->middleware('auth');
+        $this->middleware(['auth','admin','state','region']);
     }
     /**
      * Display a listing of the resource.
